@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gZ7GZ8aAaGVqoFROYfqBGOGeDaDnQiW2j/OQ9bfgG3GkOF3HUhliD9IxE+5zpKxS8qfm4kSCnd1qlz+ekIpnRQ==",
+  "dgSpecHash": "MkMogjTNl5lcb6h1fOonKuFlKGUy1E9lxscCOqo2cYVK2+RE0LyUKIGuHbkedaF/HgcKkBz4W71P3JSOgquAGQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\sinon\\Documents\\UiPath\\RPA_GRUPPE4\\.local\\",
+  "projectFilePath": "C:\\Users\\sinon\\Documents\\UiPath\\adas\\.local\\",
   "expectedPackageFiles": [
     "C:\\Users\\sinon\\.nuget\\packages\\closedxml\\0.87.1\\closedxml.0.87.1.nupkg.sha512",
     "C:\\Users\\sinon\\.nuget\\packages\\csvhelper\\16.0.0\\csvhelper.16.0.0.nupkg.sha512",

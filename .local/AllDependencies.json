@@ -7570,9 +7570,9 @@
     "restore": {
       "projectUniqueName": "RPA_GRUPPE4",
       "projectName": "RPA_GRUPPE4",
-      "projectPath": "C:\\Users\\sinon\\Documents\\UiPath\\RPA_GRUPPE4\\.local",
+      "projectPath": "C:\\Users\\sinon\\Documents\\UiPath\\adas\\.local",
       "packagesPath": "C:\\Users\\sinon\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sinon\\Documents\\UiPath\\RPA_GRUPPE4\\.local"
+      "outputPath": "C:\\Users\\sinon\\Documents\\UiPath\\adas\\.local"
     },
     "frameworks": {
       "net461": {
