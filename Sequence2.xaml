@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Sequence2" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1600,1187" sap2010:WorkflowViewState.IdRef="Sequence2_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Sequence2" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1750,1187" sap2010:WorkflowViewState.IdRef="Sequence2_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -27,6 +27,11 @@
       <x:String>System.ComponentModel</x:String>
       <x:String>System.Runtime.Serialization</x:String>
       <x:String>System.Xml.Serialization</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.Mail</x:String>
+      <x:String>UiPath.Mail.SMTP.Activities</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>UiPath.Activities.Contracts</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -54,37 +59,31 @@
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>System.Memory</AssemblyReference>
       <AssemblyReference>UiPath.Excel</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
       <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
       <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Activities.Contracts</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Sequence2" sap:VirtualizedContainerService.HintSize="376,572" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Sequence2" sap:VirtualizedContainerService.HintSize="376,302" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
-      <Variable x:TypeArguments="x:String" Name="x">
-        <Variable.Default>
-          <Literal x:TypeArguments="x:String">test</Literal>
-        </Variable.Default>
-      </Variable>
+      <Variable x:TypeArguments="x:String" Default="test" Name="x" />
       <Variable x:TypeArguments="sd:DataTable" Name="tav" />
       <Variable x:TypeArguments="x:String" Name="variable1" />
+      <Variable x:TypeArguments="x:String" Name="pw" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:BuildDataTable DataTable="[tav]" DisplayName="Build Data Table" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xD;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xD;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xD;&#xA;      &lt;xs:complexType&gt;&#xD;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xD;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xD;&#xA;            &lt;xs:complexType&gt;&#xD;&#xA;              &lt;xs:sequence&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Aktie&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xD;&#xA;                  &lt;xs:simpleType&gt;&#xD;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xD;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xD;&#xA;                    &lt;/xs:restriction&gt;&#xD;&#xA;                  &lt;/xs:simpleType&gt;&#xD;&#xA;                &lt;/xs:element&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Geld&quot; msdata:Caption=&quot;&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;              &lt;/xs:sequence&gt;&#xD;&#xA;            &lt;/xs:complexType&gt;&#xD;&#xA;          &lt;/xs:element&gt;&#xD;&#xA;        &lt;/xs:choice&gt;&#xD;&#xA;      &lt;/xs:complexType&gt;&#xD;&#xA;    &lt;/xs:element&gt;&#xD;&#xA;  &lt;/xs:schema&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Aktie&gt;text&lt;/Aktie&gt;&#xD;&#xA;    &lt;Geld&gt;1&lt;/Geld&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;&lt;/NewDataSet&gt;" />
-    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="334,61" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[&quot;ffgjgv&quot;+x]" />
-    <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_1">
-      <Assign.To>
-        <OutArgument x:TypeArguments="x:String">[x]</OutArgument>
-      </Assign.To>
-      <Assign.Value>
-        <InArgument x:TypeArguments="x:String">dsasdaaddasd</InArgument>
-      </Assign.Value>
-    </Assign>
-    <ui:OutputDataTable DataTable="[tav]" DisplayName="Output Data Table" sap:VirtualizedContainerService.HintSize="334,79" sap2010:WorkflowViewState.IdRef="OutputDataTable_1" Text="[x]" />
-    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="334,61" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[x]" />
+    <ui:GetPassword DisplayName="Get Password" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="GetPassword_1" ProtectedPassword="AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAVLU0q5zHB0GTvXHb+3xXeQAAAAACAAAAAAAQZgAAAAEAACAAAABWj1OAdl641YpKPcUftpeOKfziw12D7cQ992feRbZ1sgAAAAAOgAAAAAIAACAAAAD2zN0iyBznEEwrdLfiTaQ3BwVXzqEyLLQ0F2cdbyduShAAAACrKsxc1z2xXEh30U1blAcEQAAAAIZC/JGfiqwQCB5OQ5Fx1MS/sMoPyPqXobsa5Rr946qdZJZMVzoyRY090h2GIUJsbrhhrtD5u5TbhN90pn3quDA=" Result="[pw]" />
+    <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" ReplyTo="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" Body="test" DisplayName="Send SMTP Mail Message" Email="appbestellapp@gmail.com" EnableSSL="True" sap:VirtualizedContainerService.HintSize="334,148" sap2010:WorkflowViewState.IdRef="SendMail_1" IsBodyHtml="False" Password="[pw]" Port="587" SecureConnection="Auto" Server="smtp.gmail.com" Subject="TEst" To="simon.schwegler@hs-weingarten.de">
+      <ui:SendMail.Files>
+        <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+      </ui:SendMail.Files>
+    </ui:SendMail>
   </Sequence>
 </Activity>
