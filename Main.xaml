@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="928,1892" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1218,1187" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -31,6 +31,8 @@
       <x:String>System.Activities.DynamicUpdate</x:String>
       <x:String>System.Security</x:String>
       <x:String>System.ComponentModel</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -65,59 +67,69 @@
       <AssemblyReference>System.Memory</AssemblyReference>
       <AssemblyReference>UiPath.Excel</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="518,1827" sap2010:WorkflowViewState.IdRef="Sequence_3">
+  <Sequence sap:VirtualizedContainerService.HintSize="476,599" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="s:String[]" Name="output" />
+      <Variable x:TypeArguments="x:String" Name="str">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:String" Value="" />
+        </Variable.Default>
+      </Variable>
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="TestSequenz" sap:VirtualizedContainerService.HintSize="476,1611" sap2010:WorkflowViewState.IdRef="Sequence_1">
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-      <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Application: Unbenannt - Editor" sap:VirtualizedContainerService.HintSize="434,1519" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" ScopeGuid="995dd38c-7156-4151-859c-70dcbca366e0" Version="V1">
-        <uix:NApplicationCard.Body>
-          <ActivityAction x:TypeArguments="x:Object">
-            <ActivityAction.Argument>
-              <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
-            </ActivityAction.Argument>
-            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,1230" sap2010:WorkflowViewState.IdRef="Sequence_2">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-              <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="334,223" sap2010:WorkflowViewState.IdRef="NTypeInto_1" Text="asdasasdxas[k(enter)]" Version="V1" />
-              <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Delay_1" />
-              <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="334,223" sap2010:WorkflowViewState.IdRef="NTypeInto_2" Text="asdasasdxas[k(enter)]" Version="V1" />
-              <uix:NClick ClickType="Single" DisplayName="Click 'Datei'" sap:VirtualizedContainerService.HintSize="334,156" sap2010:WorkflowViewState.IdRef="NClick_1" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="995dd38c-7156-4151-859c-70dcbca366e0" Version="V1">
-                <uix:NClick.Target>
-                  <uix:TargetAnchorable DesignTimeRectangle="8, 31, 41, 19" FriendlyName="'Datei'" FullSelectorArgument="&lt;ctrl automationid='MenuBar' name='Anwendungsmenü' role='menu bar' /&gt;&lt;ctrl name='Datei' role='menu item' /&gt;" FuzzySelectorArgument="&lt;ctrl automationid='MenuBar' name='Anwendungsmenü' role='menu bar' /&gt;&lt;ctrl name='Datei' role='menu item' automationid='' check:text='Datei' /&gt;" Guid="49eb95ff-d846-478a-baab-d40ca875451a" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAC0AAAAXCAYAAACf+8ZRAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHSSURBVFhH1ZXPSgJRFMbvU4QYiSEWgYQt5wXauWhTuYhWDgVBFNEjtLGYMCKVxAkSUsHUYoJAESHIZWvfQPy/E9SvcZqxmUnTSQPvB2dxz51753fO/e4MCUcFJLMFtFottNttdDoddLtdzLJIgE8g+pSjC9p3EwEvdpsq6AtfGMG7BF3Q51wI/lCMMmhvEP7AA13Q3h50kDLoyyseoUhyBLQAlhAQVTBcUZ6bgoocGMJg3C3Jrejn2GNmDGj1pnIRrCCPh0m/bjoifPwFqcyon8uAl0vdYcWZ3/RP0PF0Fq9vH8ahUQTHECjNFliVfaSkfBqanCipWCWvFG2sOOLneETunyeG/pb6Wf063Vhg5bthEDodT6GQf/8jtBag39Vh0Jouy9E/FQPQ4RCPXCY/mac1/lYXMwh60D0wCH3q2sb13olB6N5YZY1elxlOxBUlgQ2Bltf9/FwahD5eZXDGrI8BrT5W/Qu+/C3NMSxYlW36F3TgRVTyBqH37U4cLq2NgJ4tka0FO3bm7XRBu+YscJttdEFvmKzwLDrogt4V7XG07ES5XEatVkO9Xkej0UCz2ZzZIB7rCg5sDpRKJVQqFVSr1T78rAbZNFvhNlkosgfwCcGs5Bw8DcSnAAAAAElFTkSuQmCC" InformativeScreenshot="24ec2f0ede8df25f4c63331cb1a9150b.png" ScopeSelectorArgument="&lt;wnd app='notepad.exe' cls='Notepad' title='*Unbenannt - Editor' /&gt;" SearchSteps="Selector, FuzzySelector, Image" />
-                </uix:NClick.Target>
-              </uix:NClick>
-              <uix:NClick ClickType="Single" DisplayName="Click 'Speichern Strg+S'" sap:VirtualizedContainerService.HintSize="334,156" sap2010:WorkflowViewState.IdRef="NClick_2" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="995dd38c-7156-4151-859c-70dcbca366e0" Version="V1">
-                <uix:NClick.Target>
-                  <uix:TargetAnchorable DesignTimeRectangle="3, 69, 272, 22" FriendlyName="'Speichern Strg+S'" FullSelectorArgument="&lt;ctrl name='Datei' role='popup menu' /&gt;&lt;ctrl automationid='3' /&gt;" FuzzySelectorArgument="&lt;ctrl name='Datei' role='popup menu' /&gt;&lt;ctrl automationid='3' role='menu item' check:text='Speichern&amp;#x9;Strg+S' /&gt;" Guid="7875f074-504f-42e7-a104-0338742a8546" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAARQAAAAaCAYAAAB2DaO9AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJdSURBVHhe7drtkbMgFIZhq7Ifu6EYe7GUZNIAKx/ikYCazIkhO/ePa3ZUhHfx+Cw4b3e73ez9frfLz6s8Hg8A/wyBAkANgQJADYECQA2BAkANgQJADYECQA2BAkBNW4EyDrbrumiwY6nNGZOxfddbMxWuJaMdDtsAH6JV66+4YMx2AsWHgPgl52MziuvqCBR8SbXWP1iTF71f7QSKS8/e2Ck//zEECr6kWusfrMmL3q+GtjxuMjvbm6lwfp7k0SVsWK5t2vjkzZdx+YOZrOmXNp0d5F+DN/odhj6ei32YdSn5/O8Hcq5u8loJ55Y66oYxnpP1NrcTddkbE+pvE0Cu1sVKJCmNqa+xj7Lrix9eeidO9JKufkKXSQwTniZ0TuEwYfJ86PN5IrN+/f6yEkibfmVfsQ//8PM+gD21WpcBUa63pf1kXNDI9k4tUJZr+Zi6GguUKKbwZiUhJm0c4rXNKiISye7v8W1qiZ0/PHnPQb9HfaRxgB27tZ4du7abbYu4XqrZ1G9mM6auNgNl5tO3+BKHlF0D5SAszrTRuKd4DByr13p27OqyFijp3N4KZbWOWb7+roY+yhoxMSE0ituMzcueXUvkRMu+am3y4zP9njkGCnZr/ai+1pXFS1ue6piijYLmPsqm5VpKzzCp4cNUYRnnAya/r/wgtveX2ojj0/3uHQMlrk7y2grX3Ha+Xm8z/50utCl/lK2pj6mp2S3PipcUKKpuzb+HQAF+lF/NXPB/S15BoAA/I3z7SNuWxlYnzg8ECoBfQaAAUEOgAFBDoABQQ6AAUEOgAFDysH+civa8WuSC+gAAAABJRU5ErkJggg==" InformativeScreenshot="ff57adf1a00a85f606b3e8938e54231c.png" ScopeSelectorArgument="&lt;wnd app='notepad.exe' cls='#32768' idx='*' /&gt;" SearchSteps="Selector, FuzzySelector, Image" />
-                </uix:NClick.Target>
-              </uix:NClick>
-              <uix:NClick ClickType="Single" DisplayName="Click 'unchecked'" sap:VirtualizedContainerService.HintSize="334,156" sap2010:WorkflowViewState.IdRef="NClick_3" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="995dd38c-7156-4151-859c-70dcbca366e0" Version="V1">
-                <uix:NClick.Target>
-                  <uix:TargetAnchorable DesignTimeRectangle="983, 674, 92, 26" ElementType="Button" FriendlyName="'unchecked'" FullSelectorArgument="&lt;wnd ctrlid='1' title='&amp;amp;Speichern' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlid='1' title='&amp;amp;Speichern' check:text='unchecked' /&gt;" Guid="58cfaffc-7ba7-428e-8ae2-29b3f14c5b85" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAGAAAAAeCAYAAADTsBuJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGXSURBVGhD7ZXLdcQgDEXpiW6oZHa0QitUkbU7cAcKPxvEyGPHH5ScaHEXAlkzvIeEmucZBD7EAGbEAGaQAer1JQwAaY4CIlm4H6Q5CkrCNE3CA4gBzIgBzIgBzIgBzIw3wBlQShUMOCrnCN6CVhqsJ/ZWHJjdHF7GGpBEa0QPsXXN/u2IAZh4+7UFT+09ghjQEQVRoK0n1oNQLnZIHk8oJ3VOP7Z6cT1YveQoMKmzztc1Rpe1UsPW0fn+/88z2IBIFSqLFImHDGtLd6D53gkduigL0K7nmrSxTd30/mwYiOq2tUoN49a8S29XB4MBhXL70E1db/MEzpQ9dEsLSYzmm5RDidLX7b/ZqbtXY/2d8/AZEPA2tDl56HyjqwE74p424IffkPE1xhoQZnH94+3YiIdq2h6J0+2ttEJ8GkFb4h2peyS+xlgDyqFxyy/ry8OX9+r7EOjHxeaoqDn0aOviw3U/xdcYbMAW9x7qLyEGMCMGMPNLDPi/iAHMiAHMHDZAeBakOQqIZOF+kOZtIIxHDGBGDGBlhm93br/+VHPF0AAAAABJRU5ErkJggg==" InformativeScreenshot="14be2cee738f498343049f2ede97f461.png" ScopeSelectorArgument="&lt;wnd app='notepad.exe' cls='#32770' title='Speichern unter' /&gt;" SearchSteps="Selector, FuzzySelector, Image" />
-                </uix:NClick.Target>
-              </uix:NClick>
-            </Sequence>
-          </ActivityAction>
-        </uix:NApplicationCard.Body>
-        <uix:NApplicationCard.TargetApp>
-          <uix:TargetApp Area="-1209, 545, 937, 735" FilePath="C:\Windows\System32\notepad.exe" IconBase64="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" InformativeScreenshot="e9b2518c6da9535c33b01e197d754881.png" Selector="&lt;wnd app='notepad.exe' cls='Notepad' title='Unbenannt - Editor'/&gt;" />
-        </uix:NApplicationCard.TargetApp>
-      </uix:NApplicationCard>
-    </Sequence>
-    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="476,84" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;Tesdt&quot;]" />
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Chrome: ADIDAS AKTIE | Realtime-Kurs | Dividende | Nachrichten | A1EWWW" sap:VirtualizedContainerService.HintSize="434,608" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InteractionMode="DebuggerApi" ScopeGuid="6f34e804-3f56-47aa-ae5b-ab4aa6bb79b1" Version="V1">
+      <uix:NApplicationCard.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,392" sap2010:WorkflowViewState.IdRef="Sequence_4">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:Object" Name="variable1" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:InjectJsScript DisplayName="Inject Js Script" sap:VirtualizedContainerService.HintSize="334,96" sap2010:WorkflowViewState.IdRef="InjectJsScript_1" InputParameter="10 EUR" ScriptCode="helper2.js">
+              <ui:InjectJsScript.ScriptOutput>
+                <OutArgument x:TypeArguments="x:String">[str]</OutArgument>
+              </ui:InjectJsScript.ScriptOutput>
+              <ui:InjectJsScript.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="7e7366b5-6f6f-45f0-b3ce-3db99e371c2c">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:InjectJsScript.Target>
+            </ui:InjectJsScript>
+            <Assign sap:VirtualizedContainerService.HintSize="334,61" sap2010:WorkflowViewState.IdRef="Assign_1">
+              <Assign.To>
+                <OutArgument x:TypeArguments="s:String[]">[output]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="s:String[]">[str.split(","c)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="334,61" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[output.ToString]" />
+          </Sequence>
+        </ActivityAction>
+      </uix:NApplicationCard.Body>
+      <uix:NApplicationCard.TargetApp>
+        <uix:TargetApp Area="463, 256, 1296, 1416" BrowserType="Chrome" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACiSURBVFhH7ZLLDsMgDAT59Pw50R6QKrrGa5PmVUaaC1gwQSn1YlZAKKCU7ctZ5AB2OZzl2QFHsAKkAHY5tPYipAOs9abK1At4Kvw0AHpMBzTYHvRwA9ihzR5lpkcI0A9mc3BE6gUs2CwcsQKGAewwaBGZbbwngM1Bj1QA/ITtQ4V0gKLCMOAMaAD7mogR5ABrvTdKKACwPZjlnv/Amfx7QK07lG1vSRB4pw8AAAAASUVORK5CYII=" InformativeScreenshot="627b1250af87756a20561abb4c416236.png" Selector="&lt;html app='chrome.exe' title='ADIDAS AKTIE | Realtime-Kurs | Dividende | Nachrichten | A1EWWW'/&gt;" Url="https://www.boerse.de/aktien/Adidas-Aktie/DE000A1EWWW0" />
+      </uix:NApplicationCard.TargetApp>
+    </uix:NApplicationCard>
   </Sequence>
 </Activity>

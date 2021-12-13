@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Browser" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1900,9208" sap2010:WorkflowViewState.IdRef="Browser_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Browser" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1251,9136" sap2010:WorkflowViewState.IdRef="Browser_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -47,6 +47,7 @@
       <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
       <x:String>UiPath.Activities.Contracts</x:String>
       <x:String>UiPath.Core.Activities.Orchestrator</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Models</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -90,18 +91,14 @@
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Get Dax " sap:VirtualizedContainerService.HintSize="1075,9143" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Get Dax " sap:VirtualizedContainerService.HintSize="1075,9071" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Default="https://www.finanzen.net/index/dax/40-werte" Name="url" />
       <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="Aktien" />
       <Variable x:TypeArguments="x:String" Name="AktienStr" />
       <Variable x:TypeArguments="x:Int32" Name="index" />
       <Variable x:TypeArguments="x:String" Default="ALL" Name="amount" />
-      <Variable x:TypeArguments="x:Int32" Name="amountInt">
-        <Variable.Default>
-          <Literal x:TypeArguments="x:Int32" Value="1" />
-        </Variable.Default>
-      </Variable>
+      <Variable x:TypeArguments="x:Int32" Default="1" Name="amountInt" />
       <Variable x:TypeArguments="x:String" Name="password" />
       <Variable x:TypeArguments="x:String" Name="emailMessage" />
       <Variable x:TypeArguments="sd:DataTable" Name="stocksToRecommend" />
@@ -213,302 +210,585 @@
         </Sequence>
       </If.Else>
     </If>
-    <ueab:ExcelApplicationCard Password="{x:Null}" ReadFormatting="{x:Null}" DisplayName="Use Excel File" sap:VirtualizedContainerService.HintSize="1033,7315" sap2010:WorkflowViewState.IdRef="ExcelApplicationCard_2" WorkbookPath="Aktien.xlsx">
+    <ueab:ExcelApplicationCard Password="{x:Null}" ReadFormatting="{x:Null}" DisplayName="Use Excel File" sap:VirtualizedContainerService.HintSize="1033,7247" sap2010:WorkflowViewState.IdRef="ExcelApplicationCard_2" WorkbookPath="Aktien.xlsx">
       <ueab:ExcelApplicationCard.Body>
         <ActivityAction x:TypeArguments="ue:IWorkbookQuickHandle">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="ue:IWorkbookQuickHandle" Name="Excel" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Safe stock to excel" sap:VirtualizedContainerService.HintSize="782,7049" sap2010:WorkflowViewState.IdRef="Sequence_9">
+          <Sequence sap:VirtualizedContainerService.HintSize="933,6981" sap2010:WorkflowViewState.IdRef="Sequence_40">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ueab:ClearRangeX DisplayName="Clear Sheet/Range/Table" HasHeaders="False" sap:VirtualizedContainerService.HintSize="740,114" sap2010:WorkflowViewState.IdRef="ClearRangeX_1" TargetRange="[Excel.Sheet(&quot;Aktien&quot;).Range(&quot;A2:S41&quot;)]" />
-            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[Aktien]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="740,135" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
-              <ui:ForEachRow.Body>
-                <ActivityAction x:TypeArguments="sd:DataRow">
-                  <ActivityAction.Argument>
-                    <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
-                  </ActivityAction.Argument>
-                </ActivityAction>
-              </ui:ForEachRow.Body>
-            </ui:ForEachRow>
-            <ueab:WriteRangeX Destination="[Excel.Sheet(&quot;Aktien&quot;)]" DisplayName="Write DataTable to Excel" sap:VirtualizedContainerService.HintSize="740,157" sap2010:WorkflowViewState.IdRef="WriteRangeX_1" IgnoreEmptySource="False" Source="[Aktien]" />
-            <ueab:ExcelForEachRowX DisplayName="For Each Excel Row" EmptyRowBehavior="Stop" HasHeaders="True" sap:VirtualizedContainerService.HintSize="740,4714" sap2010:WorkflowViewState.IdRef="ExcelForEachRowX_1" Range="[Excel.Sheet(&quot;Aktien&quot;)]" SaveAfterEachRow="False">
-              <ueab:ExcelForEachRowX.Body>
-                <ActivityAction x:TypeArguments="ue:CurrentRowQuickHandle, x:Int32">
-                  <ActivityAction.Argument1>
-                    <DelegateInArgument x:TypeArguments="ue:CurrentRowQuickHandle" Name="CurrentRow" />
-                  </ActivityAction.Argument1>
-                  <ActivityAction.Argument2>
-                    <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentIndex" />
-                  </ActivityAction.Argument2>
-                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="706,4534" sap2010:WorkflowViewState.IdRef="Sequence_11">
-                    <Sequence.Variables>
-                      <Variable x:TypeArguments="x:String" Name="aktienID" />
-                      <Variable x:TypeArguments="x:Int32" Name="daysIndex" />
-                      <Variable x:TypeArguments="x:String" Name="columnName" />
-                    </Sequence.Variables>
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                    <If Condition="[CurrentRow.ByField(&quot;ID&quot;)=&quot;&quot;]" sap:VirtualizedContainerService.HintSize="664,290" sap2010:WorkflowViewState.IdRef="If_6">
-                      <If.Then>
-                        <Sequence sap:VirtualizedContainerService.HintSize="242,114" sap2010:WorkflowViewState.IdRef="Sequence_29">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                          <ui:Break sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Break_1" />
-                        </Sequence>
-                      </If.Then>
-                      <If.Else>
-                        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_30">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                        </Sequence>
-                      </If.Else>
-                    </If>
-                    <Assign sap:VirtualizedContainerService.HintSize="664,60" sap2010:WorkflowViewState.IdRef="Assign_1">
-                      <Assign.To>
-                        <OutArgument x:TypeArguments="x:String">[aktienID]</OutArgument>
-                      </Assign.To>
-                      <Assign.Value>
-                        <InArgument x:TypeArguments="x:String">[CurrentRow.ByField("ID")]</InArgument>
-                      </Assign.Value>
-                    </Assign>
-                    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Chrome: DAX 40 Liste | DAX Werte | DAX Aktien | finanzen.net" sap:VirtualizedContainerService.HintSize="664,4012" sap2010:WorkflowViewState.IdRef="NApplicationCard_3" InteractionMode="DebuggerApi" ScopeGuid="c5046f22-ba9e-4e5f-8741-9d906a1b900f" Version="V1">
-                      <uix:NApplicationCard.Body>
-                        <ActivityAction x:TypeArguments="x:Object">
-                          <ActivityAction.Argument>
-                            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
-                          </ActivityAction.Argument>
-                          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="630,3796" sap2010:WorkflowViewState.IdRef="Sequence_12">
-                            <Sequence.Variables>
-                              <Variable x:TypeArguments="sd:DataTable" Name="performanceOverview" />
-                              <Variable x:TypeArguments="sd:DataTable" Name="lastDays" />
-                              <Variable x:TypeArguments="x:Int32" Name="indexX" />
-                              <Variable x:TypeArguments="x:String" Name="tableHelper" />
-                            </Sequence.Variables>
+            <Sequence DisplayName="Safe stock to excel" sap:VirtualizedContainerService.HintSize="891,6889" sap2010:WorkflowViewState.IdRef="Sequence_9">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ueab:ClearRangeX DisplayName="Clear Sheet/Range/Table" HasHeaders="False" sap:VirtualizedContainerService.HintSize="849,114" sap2010:WorkflowViewState.IdRef="ClearRangeX_1" TargetRange="[Excel.Sheet(&quot;Aktien&quot;).Range(&quot;A2:P41&quot;)]" />
+              <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[Aktien]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="849,135" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+                <ui:ForEachRow.Body>
+                  <ActivityAction x:TypeArguments="sd:DataRow">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
+                    </ActivityAction.Argument>
+                  </ActivityAction>
+                </ui:ForEachRow.Body>
+              </ui:ForEachRow>
+              <ueab:WriteRangeX Destination="[Excel.Sheet(&quot;Aktien&quot;)]" DisplayName="Write DataTable to Excel" sap:VirtualizedContainerService.HintSize="849,157" sap2010:WorkflowViewState.IdRef="WriteRangeX_1" IgnoreEmptySource="False" Source="[Aktien]" />
+              <ueab:ExcelForEachRowX DisplayName="For Each Excel Row" EmptyRowBehavior="Stop" HasHeaders="True" sap:VirtualizedContainerService.HintSize="849,3852" sap2010:WorkflowViewState.IdRef="ExcelForEachRowX_1" Range="[Excel.Sheet(&quot;Aktien&quot;)]" SaveAfterEachRow="False">
+                <ueab:ExcelForEachRowX.Body>
+                  <ActivityAction x:TypeArguments="ue:CurrentRowQuickHandle, x:Int32">
+                    <ActivityAction.Argument1>
+                      <DelegateInArgument x:TypeArguments="ue:CurrentRowQuickHandle" Name="CurrentRow" />
+                    </ActivityAction.Argument1>
+                    <ActivityAction.Argument2>
+                      <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentIndex" />
+                    </ActivityAction.Argument2>
+                    <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="706,3672" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                      <Sequence.Variables>
+                        <Variable x:TypeArguments="x:String" Name="aktienID" />
+                        <Variable x:TypeArguments="x:Int32" Name="daysIndex" />
+                        <Variable x:TypeArguments="x:String" Name="columnName" />
+                      </Sequence.Variables>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <If Condition="[CurrentRow.ByField(&quot;ID&quot;)=&quot;&quot;]" sap:VirtualizedContainerService.HintSize="664,300" sap2010:WorkflowViewState.IdRef="If_6">
+                        <If.Then>
+                          <Sequence sap:VirtualizedContainerService.HintSize="242,114" sap2010:WorkflowViewState.IdRef="Sequence_29">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'INPUT'" EmptyFieldMode="None" sap:VirtualizedContainerService.HintSize="588,216" sap2010:WorkflowViewState.IdRef="NTypeInto_1" ScopeIdentifier="c5046f22-ba9e-4e5f-8741-9d906a1b900f" Text="[aktienID]" Version="V1">
-                              <uix:NTypeInto.Target>
-                                <uix:TargetAnchorable BrowserURL="https://www.boerse.de/aktien/Adidas-Aktie/DE000A1EWWW0" DesignTimeRectangle="438, 149, 234, 23" ElementType="InputBox" FriendlyName="'INPUT'" FullSelectorArgument="&lt;webctrl name='search' parentid='emsPowerViewContent' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl name='search' parentid='emsPowerViewContent' tag='INPUT' type='text' aaname='' /&gt;" Guid="c983be83-821e-4a89-9fe0-e97e6e0c1b2d" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAO4AAAAbCAYAAAB7sbOIAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAASgSURBVHhe7ZldspswDIW76ayhnWEDfWWyhj7dLOG+ZaZ7yCqo/myObEMgJL2Qq2/GU8BGkiUdk7Y/hiAIDkcINwgOSBbu5+dnjBgxdj4STrhBEOyXEG4QHJAQbhAckBBuEByQEG4QHJDNwr19dMPpdBrH+WozG7j2ZKsfmpZul6E7dcPlZvevovAz7pPjug697bf7mA7keq7n+Vm1t/+1p0d4QWyP5EXmy96SeXtu13U9uFY7ze0GNglXm9knu5ngtexOuCrU3gKSfXeX4V4I9brbcOm6oetGW8xSexX/Ixcv8PFIXuq+0ppkoZpw674J4VZMn4ITolvKHoTr8MWXhlpyOJW54HtqxCu9j18GzmP9pVjAl+TiCTyQF99rLPSi9ywXLP5a4CFchzTwnEirxvJfLkYKIiclJNyEexH7OudPVrL5wWuKOaNp08C5/gwHBPvs+qHnwrP9vyl2jTm98+v3z3w9u3ehaBr2wfFYo+pjbcIxJ97f+NzWScw0d/4D69iHzncfl/G5+6r5ves7aULzgPnOfssayn3Dhjyn/JkPrHHN+rygcOW62FuO86rx+XyCrzdhk3BTclOxJ5OZH2pTpqT6n0yp8ehOGgkEKfdmJzVOes/u79pkrEF1aYodhAt2fOxzcc/DTZb887XawGbiax9TjtfFYPGi39Z8eY+HIbyLQkh79/dmZyYPLp9Whxz7HdblRddwfJMfC4jT1wdtvg8bhQtY4VwDuKIzWPiiSRFsCAbtmJ/cPMTYhGoT57BhXbMy6GfOp4ubplYIV9bm2MZc5GZlvy5fvil5neaokS8XYyFUptxTplgr67BO4At98Dq3b10n+3Cx3GdVXgipnfRX6+cw0ciF5iqEuwxJ4FQxUQBeDI6y4dBOo0HGJlCbWmAcbAuLaaCfOZ9mN8W6Rrhih9emP+1xaky2lWOSGBrx5wa/L9x63vYk18lm0fzl3ol8YIAP2TfGZaNctwhevzQvhArX7NtepnNByJ74PoRbMJUQaPKqmCiARqMlykZCO5VNWs5FheZuHgbEuM5AP3M+Xdw0tUa48i7ZtYbMsH2ycTnDXsSnF9DIMuFO7a/cu7uXdZhT8IU+eN3Uvl0sS1iRF6JdO1jT8K/v0N+7V8V1DDZ9cSUxRaPpqZyeacPnZpNkTwsgF0fWgV0silxDEe1+1ma6d3at0dP9nE/bx2PC5Ri6oeeRjTPsn7984NNiGsWJ+SvnCBdjsZ90b3lyeShzaHXxdcJ8t/Pgcu/WLWN5Xix+FC7h+q/pX+P1h9J7sEm4jAqVk2OjaGg3f6aTlJoJC6XJL969K1y6XvqvymiHGOeSDZt/WLg8N98YmoN6TasZk68cf55vCNee8br+avP0hRFR8sBayH7G5/xfL2W+078Iqz15y96D2NEOjRxPue7JeZnPFdWt8q9M+Tg6m4V7aLhhsbkf5EYHwNc3RkvYCykPrSexj7y8J99KuHL6Fl+w+hRfC9mhXxJf3597E+5e8vKefLMvbvEz9Alf2/2wvy9u8Dq+mXCD4D0I4QbBAQnhBsEBmRRujBgx9j0SWbhBEByHEG4QHI5h+Ad21mBE4BzdGQAAAABJRU5ErkJggg==" InformativeScreenshot="c82ef4a74c091a8a868cc7aafe4bb416.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='ADIDAS AKTIE | Realtime-Kurs | Dividende | Nachrichten | A1EWWW' /&gt;" SearchSteps="FuzzySelector, Image" />
-                              </uix:NTypeInto.Target>
-                            </uix:NTypeInto>
-                            <uix:NKeyboardShortcuts DelayBetweenShortcuts="{x:Null}" ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" sap:VirtualizedContainerService.HintSize="588,178" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_2" Shortcuts="[d(hk)][k(enter)][u(hk)]" Version="V1" />
-                            <uix:NExtractData AppendResults="False" ContinueOnError="True" DataTable="[lastDays]" DisplayName="Extract Table Data" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Table'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column-0' ReferenceIdx='0' Name='Column-0'&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column-1' ReferenceIdx='1' Name='Column-1'&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column-2' ReferenceIdx='2' Name='Column-2'&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract-table get_columns_name='1' get_empty_columns='1' columns_name_source='Longest'&gt;&lt;column name='Column-0' attr='text' /&gt;&lt;column name='Column-1' attr='text' /&gt;&lt;column name='Column-2' attr='text' /&gt;&lt;/extract-table&gt;" sap:VirtualizedContainerService.HintSize="588,156" sap2010:WorkflowViewState.IdRef="NExtractData_3" LimitExtractionTo="Rows" MaximumResults="5" ScopeIdentifier="c5046f22-ba9e-4e5f-8741-9d906a1b900f" Version="V1">
-                              <uix:NExtractData.Target>
-                                <uix:TargetAnchorable DesignTimeRectangle="647, 824, 377, 178" FriendlyName="'Datum Schluss %'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;table' idx='6' parentid='content_container' tag='TABLE' /&gt;" Guid="7489ac02-9b5d-42de-a34d-a28677e7ce4a" InformativeScreenshot="236b63b5ef9b18b00c00db4264a99c3d.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='ADIDAS AKTIE | Realtime-Kurs | Dividende | Nachrichten | A1EWWW' /&gt;" SearchSteps="Selector" />
-                              </uix:NExtractData.Target>
-                            </uix:NExtractData>
-                            <ui:OutputDataTable DataTable="[lastDays]" DisplayName="Output Data Table" sap:VirtualizedContainerService.HintSize="588,79" sap2010:WorkflowViewState.IdRef="OutputDataTable_1" Text="[tableHelper]" />
-                            <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="588,61" sap2010:WorkflowViewState.IdRef="WriteLine_11" Text="[tableHelper]" />
-                            <uix:NExtractData AppendResults="False" ContinueOnError="True" DataTable="[performanceOverview]" DisplayName="Extract Table Data" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Table'&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column-0' ReferenceIdx='0' Name='Column-0'&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column-1' ReferenceIdx='1' Name='Column-1'&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column-2' ReferenceIdx='2' Name='Column-2'&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column-3' ReferenceIdx='3' Name='Column-3'&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column-4' ReferenceIdx='4' Name='Column-4'&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract-table get_columns_name='1' get_empty_columns='1' columns_name_source='Longest'&gt;&lt;column name='Column-0' attr='text' /&gt;&lt;column name='Column-1' attr='text' /&gt;&lt;column name='Column-2' attr='text' /&gt;&lt;column name='Column-3' attr='text' /&gt;&lt;column name='Column-4' attr='text' /&gt;&lt;/extract-table&gt;" sap:VirtualizedContainerService.HintSize="588,156" sap2010:WorkflowViewState.IdRef="NExtractData_6" MaximumResults="0" ScopeIdentifier="c5046f22-ba9e-4e5f-8741-9d906a1b900f" Version="V1">
-                              <uix:NExtractData.Target>
-                                <uix:TargetAnchorable DesignTimeRectangle="71, 826, 539, 178" FriendlyName="'Zeitraum damals'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;table' idx='6' parentid='content_container' tag='TABLE' /&gt;" Guid="81c02253-45b1-470c-9901-92330ea174f3" InformativeScreenshot="7c0ab2d421092a904b65d77675f62db0.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='AIRBUS AKTIE | Realtime-Kurs | Dividende | Nachrichten | 938914' /&gt;" SearchSteps="Selector" />
-                              </uix:NExtractData.Target>
-                            </uix:NExtractData>
-                            <ui:OutputDataTable DataTable="[performanceOverview]" DisplayName="Output Data Table" sap:VirtualizedContainerService.HintSize="588,79" sap2010:WorkflowViewState.IdRef="OutputDataTable_2" Text="[tableHelper]" />
-                            <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="588,61" sap2010:WorkflowViewState.IdRef="WriteLine_12" Text="[tableHelper]" />
-                            <If Condition="[performanceOverview.RowCount &gt; 0]" sap:VirtualizedContainerService.HintSize="588,1414" sap2010:WorkflowViewState.IdRef="If_4">
-                              <If.Then>
-                                <Sequence sap:VirtualizedContainerService.HintSize="476,1236" sap2010:WorkflowViewState.IdRef="Sequence_24">
-                                  <sap:WorkflowViewStateService.ViewState>
-                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                    </scg:Dictionary>
-                                  </sap:WorkflowViewStateService.ViewState>
-                                  <ueab:WriteCellX Cell="[CurrentRow(&quot;Week&quot;)]" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="434,157" sap2010:WorkflowViewState.IdRef="WriteCellX_10" Value="[performanceOverview(1)(4)]" />
-                                  <ueab:WriteCellX Cell="[CurrentRow(&quot;2Weeks&quot;)]" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="434,157" sap2010:WorkflowViewState.IdRef="WriteCellX_11" Value="[performanceOverview(2)(4)]" />
-                                  <ueab:WriteCellX Cell="[CurrentRow(&quot;Month&quot;)]" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="434,157" sap2010:WorkflowViewState.IdRef="WriteCellX_12" Value="[performanceOverview(3)(4)]" />
-                                  <ueab:WriteCellX Cell="[CurrentRow(&quot;6Month&quot;)]" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="434,157" sap2010:WorkflowViewState.IdRef="WriteCellX_13" Value="[performanceOverview(4)(4)]" />
-                                  <ueab:WriteCellX Cell="[CurrentRow(&quot;Year&quot;)]" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="434,157" sap2010:WorkflowViewState.IdRef="WriteCellX_14" Value="[performanceOverview(5)(4)]" />
-                                  <ueab:WriteCellX Cell="[CurrentRow(&quot;Current&quot;)]" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="434,157" sap2010:WorkflowViewState.IdRef="WriteCellX_15" Value="[performanceOverview(1)(2)]" />
-                                </Sequence>
-                              </If.Then>
-                              <If.Else>
-                                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_25">
-                                  <sap:WorkflowViewStateService.ViewState>
-                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                    </scg:Dictionary>
-                                  </sap:WorkflowViewStateService.ViewState>
-                                </Sequence>
-                              </If.Else>
-                            </If>
-                            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="[indexX]" DataTable="[lastDays]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="588,942" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
-                              <ui:ForEachRow.Body>
-                                <ActivityAction x:TypeArguments="sd:DataRow">
-                                  <ActivityAction.Argument>
-                                    <DelegateInArgument x:TypeArguments="sd:DataRow" Name="localCurrentRow" />
-                                  </ActivityAction.Argument>
-                                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="554,821" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                            <ui:Break sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Break_1" />
+                          </Sequence>
+                        </If.Then>
+                        <If.Else>
+                          <Sequence sap2010:WorkflowViewState.IdRef="Sequence_30">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </Sequence>
+                        </If.Else>
+                      </If>
+                      <Assign sap:VirtualizedContainerService.HintSize="664,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:String">[aktienID]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:String">[CurrentRow.ByField("ID")]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Chrome: DAX 40 Liste | DAX Werte | DAX Aktien | finanzen.net" sap:VirtualizedContainerService.HintSize="664,3140" sap2010:WorkflowViewState.IdRef="NApplicationCard_3" InteractionMode="DebuggerApi" ScopeGuid="c5046f22-ba9e-4e5f-8741-9d906a1b900f" Version="V1">
+                        <uix:NApplicationCard.Body>
+                          <ActivityAction x:TypeArguments="x:Object">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                            </ActivityAction.Argument>
+                            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="630,2924" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                              <Sequence.Variables>
+                                <Variable x:TypeArguments="sd:DataTable" Name="performanceOverview" />
+                                <Variable x:TypeArguments="sd:DataTable" Name="lastDays" />
+                                <Variable x:TypeArguments="x:Int32" Name="indexX" />
+                                <Variable x:TypeArguments="x:String" Name="tableHelper" />
+                                <Variable x:TypeArguments="x:String" Name="variable1" />
+                                <Variable x:TypeArguments="x:String" Name="aktienURL" />
+                                <Variable x:TypeArguments="x:String" Name="currentVal" />
+                              </Sequence.Variables>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'INPUT'" EmptyFieldMode="None" sap:VirtualizedContainerService.HintSize="588,216" sap2010:WorkflowViewState.IdRef="NTypeInto_1" ScopeIdentifier="c5046f22-ba9e-4e5f-8741-9d906a1b900f" Text="[aktienID]" Version="V1">
+                                <uix:NTypeInto.Target>
+                                  <uix:TargetAnchorable BrowserURL="https://www.boerse.de/aktien/Adidas-Aktie/DE000A1EWWW0" DesignTimeRectangle="438, 149, 234, 23" ElementType="InputBox" FriendlyName="'INPUT'" FullSelectorArgument="&lt;webctrl name='search' parentid='emsPowerViewContent' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl name='search' parentid='emsPowerViewContent' tag='INPUT' type='text' aaname='' /&gt;" Guid="c983be83-821e-4a89-9fe0-e97e6e0c1b2d" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAO4AAAAbCAYAAAB7sbOIAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAASgSURBVHhe7ZldspswDIW76ayhnWEDfWWyhj7dLOG+ZaZ7yCqo/myObEMgJL2Qq2/GU8BGkiUdk7Y/hiAIDkcINwgOSBbu5+dnjBgxdj4STrhBEOyXEG4QHJAQbhAckBBuEByQEG4QHJDNwr19dMPpdBrH+WozG7j2ZKsfmpZul6E7dcPlZvevovAz7pPjug697bf7mA7keq7n+Vm1t/+1p0d4QWyP5EXmy96SeXtu13U9uFY7ze0GNglXm9knu5ngtexOuCrU3gKSfXeX4V4I9brbcOm6oetGW8xSexX/Ixcv8PFIXuq+0ppkoZpw674J4VZMn4ITolvKHoTr8MWXhlpyOJW54HtqxCu9j18GzmP9pVjAl+TiCTyQF99rLPSi9ywXLP5a4CFchzTwnEirxvJfLkYKIiclJNyEexH7OudPVrL5wWuKOaNp08C5/gwHBPvs+qHnwrP9vyl2jTm98+v3z3w9u3ehaBr2wfFYo+pjbcIxJ97f+NzWScw0d/4D69iHzncfl/G5+6r5ves7aULzgPnOfssayn3Dhjyn/JkPrHHN+rygcOW62FuO86rx+XyCrzdhk3BTclOxJ5OZH2pTpqT6n0yp8ehOGgkEKfdmJzVOes/u79pkrEF1aYodhAt2fOxzcc/DTZb887XawGbiax9TjtfFYPGi39Z8eY+HIbyLQkh79/dmZyYPLp9Whxz7HdblRddwfJMfC4jT1wdtvg8bhQtY4VwDuKIzWPiiSRFsCAbtmJ/cPMTYhGoT57BhXbMy6GfOp4ubplYIV9bm2MZc5GZlvy5fvil5neaokS8XYyFUptxTplgr67BO4At98Dq3b10n+3Cx3GdVXgipnfRX6+cw0ciF5iqEuwxJ4FQxUQBeDI6y4dBOo0HGJlCbWmAcbAuLaaCfOZ9mN8W6Rrhih9emP+1xaky2lWOSGBrx5wa/L9x63vYk18lm0fzl3ol8YIAP2TfGZaNctwhevzQvhArX7NtepnNByJ74PoRbMJUQaPKqmCiARqMlykZCO5VNWs5FheZuHgbEuM5AP3M+Xdw0tUa48i7ZtYbMsH2ycTnDXsSnF9DIMuFO7a/cu7uXdZhT8IU+eN3Uvl0sS1iRF6JdO1jT8K/v0N+7V8V1DDZ9cSUxRaPpqZyeacPnZpNkTwsgF0fWgV0silxDEe1+1ma6d3at0dP9nE/bx2PC5Ri6oeeRjTPsn7984NNiGsWJ+SvnCBdjsZ90b3lyeShzaHXxdcJ8t/Pgcu/WLWN5Xix+FC7h+q/pX+P1h9J7sEm4jAqVk2OjaGg3f6aTlJoJC6XJL969K1y6XvqvymiHGOeSDZt/WLg8N98YmoN6TasZk68cf55vCNee8br+avP0hRFR8sBayH7G5/xfL2W+078Iqz15y96D2NEOjRxPue7JeZnPFdWt8q9M+Tg6m4V7aLhhsbkf5EYHwNc3RkvYCykPrSexj7y8J99KuHL6Fl+w+hRfC9mhXxJf3597E+5e8vKefLMvbvEz9Alf2/2wvy9u8Dq+mXCD4D0I4QbBAQnhBsEBmRRujBgx9j0SWbhBEByHEG4QHI5h+Ad21mBE4BzdGQAAAABJRU5ErkJggg==" InformativeScreenshot="c82ef4a74c091a8a868cc7aafe4bb416.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='ADIDAS AKTIE | Realtime-Kurs | Dividende | Nachrichten | A1EWWW' /&gt;" SearchSteps="FuzzySelector, Image" />
+                                </uix:NTypeInto.Target>
+                              </uix:NTypeInto>
+                              <uix:NKeyboardShortcuts DelayBetweenShortcuts="{x:Null}" ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" sap:VirtualizedContainerService.HintSize="588,178" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_2" Shortcuts="[d(hk)][k(enter)][u(hk)]" Version="V1" />
+                              <ui:InjectJsScript InputParameter="{x:Null}" ScriptOutput="{x:Null}" DisplayName="Inject Js Script" sap:VirtualizedContainerService.HintSize="588,96" sap2010:WorkflowViewState.IdRef="InjectJsScript_4" ScriptCode="helper2.js">
+                                <ui:InjectJsScript.Target>
+                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="56bce740-19da-4de6-9ca5-2a8757586488">
+                                    <ui:Target.TimeoutMS>
+                                      <InArgument x:TypeArguments="x:Int32" />
+                                    </ui:Target.TimeoutMS>
+                                    <ui:Target.WaitForReady>
+                                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                                    </ui:Target.WaitForReady>
+                                  </ui:Target>
+                                </ui:InjectJsScript.Target>
+                              </ui:InjectJsScript>
+                              <uix:NGetText ContinueOnError="True" DisplayName="Get Text 'aktueller Kurs'" sap:VirtualizedContainerService.HintSize="588,156" sap2010:WorkflowViewState.IdRef="NGetText_2" ScopeIdentifier="c5046f22-ba9e-4e5f-8741-9d906a1b900f" Version="V1">
+                                <uix:NGetText.Target>
+                                  <uix:TargetAnchorable BrowserURL="https://www.boerse.de/aktien/Adidas-Aktie/DE000A1EWWW0" DesignTimeRectangle="801, 841, 93, 19" ElementType="Text" FriendlyName="'263,78 EUR'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;span&amp;gt;span' isleaf='1' parentid='DE000A1EWWW0' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' isleaf='1' parentid='DE000A1EWWW0' tag='SPAN' /&gt;" Guid="d6dd2529-5c37-4bcd-88a7-73278c24c3e9" InformativeScreenshot="016bfb08866b733293cf534beb8dceb8.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='ADIDAS AKTIE | Realtime-Kurs | Dividende | Nachrichten | A1EWWW' /&gt;" SearchSteps="FuzzySelector">
+                                    <uix:TargetAnchorable.Anchors>
+                                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                        <uix:Target DesignTimeRectangle="564, 830, 174, 33" ElementType="Text" FriendlyName="'aktueller Kurs'" FullSelectorArgument="&lt;webctrl id='pushList' tag='TABLE' /&gt;&lt;webctrl parentid='DE000A1EWWW0' tag='TD' /&gt;" FuzzySelectorArgument="&lt;webctrl id='pushList' tag='TABLE' /&gt;&lt;webctrl parentid='DE000A1EWWW0' tag='TD' type='' aaname='aktueller Kurs:' check:text='aktueller Kurs:' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAALIAAAAlCAYAAADm6bOTAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKESURBVHhe7Zc9bhNRFEa9Iq8iZgU4KyALAHrSkw4CLdAi6FBKYAuItIGKkApBFUEz6Fh81peH8XhiNCGXL9KR5839ec+5xxNn0v36+fH9PIRrS0QOJYjIoQQROZQgIocSRORQgogcShCRQwkicihBRA4liMihBBE5lCAihxJE5FCCiBxKEJFDCSJyKMFfE3l//1737OmT3+5zj1h7f1O+ff3S7e3d6t6+ed0dv3/X7e7Ou8+nn1bmbgLnoR99/d5kMlns4bnh+vDfi8z6xmy2Vc9w9QwWGaF4egk9xVxkhJtOp93hwwfLPOKtiNS6VOQoX73Wibwufz6/ubiv8wkXmVgrsb8P33tVX9D+3sd7hHEYJDIizXZ2Fq+sXQoNr5WNe8RU/yeRvRd5fBBcIK69vi9fe7ao7ujo1aKGWo/3iay+nIGzqJ4a1YXx2eqrhYvIgA8O7l8YLjDcPpHPzk4Xry6ChHKZVP/xw0lvvscc7uspehmRFWtFDlfLYJEZtEQAhiuR+fOKzC4R18S47hPZ+wJ160Tuy9cZHM4jgbke+tXC+9KDXuxNjBzFwrgMEpkh+uBZa4ASoH1SrROZGPUSeZV8LlArcl9+GwPtKek4m86ntUTmnLxfem3S1/uEcbm0yBqspHABfKh+rSeYi6F68nQtgbinPGr8g7BJvs7teB1rr2XNWRWnB09bP6/6rvpQqkcYn0Eia5gMFyFfvni+HKaL7EOXDC626h8/OrwgFTnEPN97tfL05bNuYX/fE3RGYhKb9d07t5e9VvXVewHvyVn0uwjjsNU/eyH8K0TkUIKIHEoQkUMJInIoQUQOJYjIoQQROZQgIocSRORQgogcCnDe/QQp/KHX3n2/lQAAAABJRU5ErkJggg==" SearchSteps="FuzzySelector, Image" />
+                                      </scg:List>
+                                    </uix:TargetAnchorable.Anchors>
+                                  </uix:TargetAnchorable>
+                                </uix:NGetText.Target>
+                                <uix:NGetText.Text>
+                                  <OutArgument x:TypeArguments="x:String">[currentVal]</OutArgument>
+                                </uix:NGetText.Text>
+                              </uix:NGetText>
+                              <uix:NExtractData AppendResults="False" ContinueOnError="True" DataTable="[lastDays]" DisplayName="Extract Table Data" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Table'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column-0' ReferenceIdx='0' Name='Column-0'&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column-1' ReferenceIdx='1' Name='Column-1'&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column-2' ReferenceIdx='2' Name='Column-2'&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract-table get_columns_name='1' get_empty_columns='1' columns_name_source='Longest'&gt;&lt;column name='Column-0' attr='text' /&gt;&lt;column name='Column-1' attr='text' /&gt;&lt;column name='Column-2' attr='text' /&gt;&lt;/extract-table&gt;" sap:VirtualizedContainerService.HintSize="588,156" sap2010:WorkflowViewState.IdRef="NExtractData_3" LimitExtractionTo="Rows" MaximumResults="6" ScopeIdentifier="c5046f22-ba9e-4e5f-8741-9d906a1b900f" Version="V1">
+                                <uix:NExtractData.Target>
+                                  <uix:TargetAnchorable DesignTimeRectangle="647, 824, 377, 178" FriendlyName="'Datum Schluss %'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;table' idx='6' parentid='content_container' tag='TABLE' /&gt;" Guid="7489ac02-9b5d-42de-a34d-a28677e7ce4a" InformativeScreenshot="236b63b5ef9b18b00c00db4264a99c3d.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='ADIDAS AKTIE | Realtime-Kurs | Dividende | Nachrichten | A1EWWW' /&gt;" SearchSteps="Selector" />
+                                </uix:NExtractData.Target>
+                              </uix:NExtractData>
+                              <ui:InjectJsScript DisplayName="Inject Js Script" sap:VirtualizedContainerService.HintSize="588,96" sap2010:WorkflowViewState.IdRef="InjectJsScript_3" InputParameter="[currentVal]" ScriptCode="helper.js">
+                                <ui:InjectJsScript.ScriptOutput>
+                                  <OutArgument x:TypeArguments="x:String">[currentVal]</OutArgument>
+                                </ui:InjectJsScript.ScriptOutput>
+                                <ui:InjectJsScript.Target>
+                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="e1299e14-dcdc-4f77-b3f1-da2f0d769b6a">
+                                    <ui:Target.TimeoutMS>
+                                      <InArgument x:TypeArguments="x:Int32" />
+                                    </ui:Target.TimeoutMS>
+                                    <ui:Target.WaitForReady>
+                                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                                    </ui:Target.WaitForReady>
+                                  </ui:Target>
+                                </ui:InjectJsScript.Target>
+                              </ui:InjectJsScript>
+                              <uix:NGetUrl CurrentUrl="[aktienURL]" DisplayName="Get URL" sap:VirtualizedContainerService.HintSize="588,86" sap2010:WorkflowViewState.IdRef="NGetUrl_1" Version="V1" />
+                              <ui:OutputDataTable DataTable="[lastDays]" DisplayName="Output Data Table" sap:VirtualizedContainerService.HintSize="588,79" sap2010:WorkflowViewState.IdRef="OutputDataTable_1" Text="[tableHelper]" />
+                              <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="588,61" sap2010:WorkflowViewState.IdRef="WriteLine_14" Text="[tableHelper]" />
+                              <ueab:WriteCellX Cell="[CurrentRow(&quot;Url&quot;)]" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="588,157" sap2010:WorkflowViewState.IdRef="WriteCellX_10" Value="[aktienURL]" />
+                              <ueab:WriteCellX Cell="[CurrentRow(&quot;Current&quot;)]" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="588,157" sap2010:WorkflowViewState.IdRef="WriteCellX_18" Value="[currentVal]" />
+                              <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="[indexX]" DataTable="[lastDays]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="588,952" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
+                                <ui:ForEachRow.Body>
+                                  <ActivityAction x:TypeArguments="sd:DataRow">
+                                    <ActivityAction.Argument>
+                                      <DelegateInArgument x:TypeArguments="sd:DataRow" Name="localCurrentRow" />
+                                    </ActivityAction.Argument>
+                                    <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="554,831" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="512,61" sap2010:WorkflowViewState.IdRef="WriteLine_13" Text="[indexX.ToString]" />
+                                      <If Condition="[indexX&gt;0]" sap:VirtualizedContainerService.HintSize="512,636" sap2010:WorkflowViewState.IdRef="If_3">
+                                        <If.Then>
+                                          <Sequence sap:VirtualizedContainerService.HintSize="476,448" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <ueab:WriteCellX Cell="[CurrentRow(indexX.ToString+&quot;Ago&quot;)]" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="434,157" sap2010:WorkflowViewState.IdRef="WriteCellX_3" Value="[localCurrentRow(2)]" />
+                                            <ueab:WriteCellX Cell="[CurrentRow(indexX.ToString+&quot;Value&quot;)]" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="434,157" sap2010:WorkflowViewState.IdRef="WriteCellX_16" Value="[localCurrentRow(1)]" />
+                                          </Sequence>
+                                        </If.Then>
+                                        <If.Else>
+                                          <Sequence sap2010:WorkflowViewState.IdRef="Sequence_23">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                          </Sequence>
+                                        </If.Else>
+                                      </If>
+                                    </Sequence>
+                                  </ActivityAction>
+                                </ui:ForEachRow.Body>
+                              </ui:ForEachRow>
+                            </Sequence>
+                          </ActivityAction>
+                        </uix:NApplicationCard.Body>
+                        <uix:NApplicationCard.TargetApp>
+                          <uix:TargetApp Area="-1288, -8, 1296, 1416" BrowserType="Chrome" IconBase64="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" InformativeScreenshot="ded56dde94e5ee49fffb0cada9790033.png" Selector="&lt;html app='chrome.exe' url='https://www.boerse.de/' /&gt;" Url="https://www.boerse.de/" />
+                        </uix:NApplicationCard.TargetApp>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </uix:NApplicationCard>
+                    </Sequence>
+                  </ActivityAction>
+                </ueab:ExcelForEachRowX.Body>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ueab:ExcelForEachRowX>
+              <Assign sap:VirtualizedContainerService.HintSize="849,64" sap2010:WorkflowViewState.IdRef="Assign_4">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[emailMessage]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String" xml:space="preserve">&lt;html&gt;&lt;head&gt;
+&lt;script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'&gt;&lt;/script&gt;
+&lt;link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC' crossorigin='anonymous'&gt;
+&lt;style&gt;
+            table,
+        th,
+        td {
+            border: 1px solid black;
+            font-size: 30px;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th {
+            padding: 10px;
+        }
+
+        td {
+            padding: 10px;
+        }
+
+        .text-success {
+            color: green;
+        }
+
+        .text-danger {
+            color: red;
+        }
+		
+		.box-danger {
+		 background-color: red;
+		}
+		
+		.box-success {
+		
+		 background-color: green;
+		}
+
+        .fillSuccess {
+
+            fill: green;
+
+        }
+
+        .fillDanger {
+
+            fill: red;
+
+        }
+
+        .flex {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .ms-2 {
+            margin-left: 2px;
+        }
+
+        .super {
+            font-weight: bold;
+
+        }
+		.buy {
+
+ position: relative;
+  text-align: center;
+  background:rgb(93, 153, 9);
+  color: red;
+  border: 2px solid black;
+  width: 30px;
+  height: 30px;
+   border-radius: 10px;
+    
+} 
+
+.sell {
+ position: relative;
+  text-align: center;
+  background:rgb(158, 12, 9);
+  border: 2px solid black;
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+
+}
+
+.inner {
+  color: white;
+  position: absolute;
+  top: 4px;
+  right: 10px;
+  font-weight: bold;
+
+}
+		
+		
+&lt;/style&gt;
+
+ 
+&lt;/head&gt;&lt;body&gt;&lt;h1&gt; Ihre Empfehlungen der Woche:&lt;/h1&gt;&lt;table&gt;&lt;tr&gt;&lt;th&gt;Name &amp; ISIN&lt;/th&gt;&lt;th&gt;Aktueller Wert&lt;/th&gt;&lt;th&gt;Kursänderung (Woche)&lt;/th&gt;&lt;th&gt;Empfehlung&lt;/th&gt;&lt;/tr&gt;</InArgument>
+                </Assign.Value>
+              </Assign>
+              <ueab:ExcelForEachRowX DisplayName="For Each Excel Row" EmptyRowBehavior="Stop" HasHeaders="True" sap:VirtualizedContainerService.HintSize="849,2275" sap2010:WorkflowViewState.IdRef="ExcelForEachRowX_2" Range="[Excel.Sheet(&quot;Aktien&quot;)]" SaveAfterEachRow="False">
+                <ueab:ExcelForEachRowX.Body>
+                  <ActivityAction x:TypeArguments="ue:CurrentRowQuickHandle, x:Int32">
+                    <ActivityAction.Argument1>
+                      <DelegateInArgument x:TypeArguments="ue:CurrentRowQuickHandle" Name="CurrentRow" />
+                    </ActivityAction.Argument1>
+                    <ActivityAction.Argument2>
+                      <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentIndex" />
+                    </ActivityAction.Argument2>
+                    <Sequence DisplayName="Create Email response" sap:VirtualizedContainerService.HintSize="815,2095" sap2010:WorkflowViewState.IdRef="Sequence_35">
+                      <Sequence.Variables>
+                        <Variable x:TypeArguments="x:String" Name="rowName" />
+                        <Variable x:TypeArguments="x:String" Name="rowWert" />
+                        <Variable x:TypeArguments="x:String" Name="rowWeek" />
+                        <Variable x:TypeArguments="x:String" Name="rowKauf" />
+                        <Variable x:TypeArguments="x:String" Name="rowVerkauf" />
+                        <Variable x:TypeArguments="x:String" Name="rowSuperBuy" />
+                        <Variable x:TypeArguments="x:String" Name="rowSuperSell" />
+                      </Sequence.Variables>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="773,2003" sap2010:WorkflowViewState.IdRef="Sequence_28">
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="x:String" Name="rowURL" />
+                        </Sequence.Variables>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <If Condition="[CurrentRow.ByField(&quot;ID&quot;)=&quot;&quot;]" sap:VirtualizedContainerService.HintSize="731,300" sap2010:WorkflowViewState.IdRef="If_7">
+                          <If.Then>
+                            <Sequence sap:VirtualizedContainerService.HintSize="242,114" sap2010:WorkflowViewState.IdRef="Sequence_31">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:Break sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Break_2" />
+                            </Sequence>
+                          </If.Then>
+                          <If.Else>
+                            <Sequence sap2010:WorkflowViewState.IdRef="Sequence_32">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </Sequence>
+                          </If.Else>
+                        </If>
+                        <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="731,317" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+                          <ui:MultipleAssign.AssignOperations>
+                            <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
+                              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
+                                <ui:AssignOperation.To>
+                                  <OutArgument x:TypeArguments="x:String">[rowName]</OutArgument>
+                                </ui:AssignOperation.To>
+                                <ui:AssignOperation.Value>
+                                  <InArgument x:TypeArguments="x:String">[CurrentRow("Name ISIN")]</InArgument>
+                                </ui:AssignOperation.Value>
+                              </ui:AssignOperation>
+                              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
+                                <ui:AssignOperation.To>
+                                  <OutArgument x:TypeArguments="x:String">[rowWert]</OutArgument>
+                                </ui:AssignOperation.To>
+                                <ui:AssignOperation.Value>
+                                  <InArgument x:TypeArguments="x:String">[CurrentRow("Current")]</InArgument>
+                                </ui:AssignOperation.Value>
+                              </ui:AssignOperation>
+                              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
+                                <ui:AssignOperation.To>
+                                  <OutArgument x:TypeArguments="x:String">[rowVerkauf]</OutArgument>
+                                </ui:AssignOperation.To>
+                                <ui:AssignOperation.Value>
+                                  <InArgument x:TypeArguments="x:String">[CurrentRow("Verkaufsempfehlung")]</InArgument>
+                                </ui:AssignOperation.Value>
+                              </ui:AssignOperation>
+                              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_5">
+                                <ui:AssignOperation.To>
+                                  <OutArgument x:TypeArguments="x:String">[rowKauf]</OutArgument>
+                                </ui:AssignOperation.To>
+                                <ui:AssignOperation.Value>
+                                  <InArgument x:TypeArguments="x:String">[CurrentRow("Kaufempfehlung")]</InArgument>
+                                </ui:AssignOperation.Value>
+                              </ui:AssignOperation>
+                              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_6">
+                                <ui:AssignOperation.To>
+                                  <OutArgument x:TypeArguments="x:String">[rowSuperBuy]</OutArgument>
+                                </ui:AssignOperation.To>
+                                <ui:AssignOperation.Value>
+                                  <InArgument x:TypeArguments="x:String">[CurrentRow.ByField("SuperBuy")]</InArgument>
+                                </ui:AssignOperation.Value>
+                              </ui:AssignOperation>
+                              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_7">
+                                <ui:AssignOperation.To>
+                                  <OutArgument x:TypeArguments="x:String">[rowSuperSell]</OutArgument>
+                                </ui:AssignOperation.To>
+                                <ui:AssignOperation.Value>
+                                  <InArgument x:TypeArguments="x:String">[CurrentRow.ByField("SuperSell")]</InArgument>
+                                </ui:AssignOperation.Value>
+                              </ui:AssignOperation>
+                              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_8">
+                                <ui:AssignOperation.To>
+                                  <OutArgument x:TypeArguments="x:String">[rowURL]</OutArgument>
+                                </ui:AssignOperation.To>
+                                <ui:AssignOperation.Value>
+                                  <InArgument x:TypeArguments="x:String">[CurrentRow.ByField("Url")]</InArgument>
+                                </ui:AssignOperation.Value>
+                              </ui:AssignOperation>
+                              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_9">
+                                <ui:AssignOperation.To>
+                                  <OutArgument x:TypeArguments="x:String">[rowWeek]</OutArgument>
+                                </ui:AssignOperation.To>
+                                <ui:AssignOperation.Value>
+                                  <InArgument x:TypeArguments="x:String">[CurrentRow.ByField("Change")]</InArgument>
+                                </ui:AssignOperation.Value>
+                              </ui:AssignOperation>
+                            </scg:List>
+                          </ui:MultipleAssign.AssignOperations>
+                        </ui:MultipleAssign>
+                        <If Condition="[rowKauf=&quot;JA&quot;]" sap:VirtualizedContainerService.HintSize="731,587" sap2010:WorkflowViewState.IdRef="If_5">
+                          <If.Then>
+                            <Sequence sap:VirtualizedContainerService.HintSize="695,401" sap2010:WorkflowViewState.IdRef="Sequence_26">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <If Condition="[rowSuperBuy=&quot;JA&quot;]" sap:VirtualizedContainerService.HintSize="653,309" sap2010:WorkflowViewState.IdRef="If_10">
+                                <If.Then>
+                                  <Sequence sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_41">
                                     <sap:WorkflowViewStateService.ViewState>
                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                       </scg:Dictionary>
                                     </sap:WorkflowViewStateService.ViewState>
-                                    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="512,61" sap2010:WorkflowViewState.IdRef="WriteLine_13" Text="[indexX.ToString]" />
-                                    <If Condition="[indexX&gt;0]" sap:VirtualizedContainerService.HintSize="512,626" sap2010:WorkflowViewState.IdRef="If_3">
-                                      <If.Then>
-                                        <Sequence sap:VirtualizedContainerService.HintSize="476,448" sap2010:WorkflowViewState.IdRef="Sequence_22">
-                                          <sap:WorkflowViewStateService.ViewState>
-                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                            </scg:Dictionary>
-                                          </sap:WorkflowViewStateService.ViewState>
-                                          <ueab:WriteCellX Cell="[CurrentRow(indexX.ToString+&quot;Ago&quot;)]" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="434,157" sap2010:WorkflowViewState.IdRef="WriteCellX_3" Value="[localCurrentRow(2)]" />
-                                          <ueab:WriteCellX Cell="[CurrentRow(indexX.ToString+&quot;Value&quot;)]" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="434,157" sap2010:WorkflowViewState.IdRef="WriteCellX_16" Value="[localCurrentRow(1)]" />
-                                        </Sequence>
-                                      </If.Then>
-                                      <If.Else>
-                                        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_23">
-                                          <sap:WorkflowViewStateService.ViewState>
-                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                            </scg:Dictionary>
-                                          </sap:WorkflowViewStateService.ViewState>
-                                        </Sequence>
-                                      </If.Else>
-                                    </If>
+                                    <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_6">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:String">[emailMessage]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:String" xml:space="preserve">[emailMessage+"&lt;tr class='borderSuccess'&gt;&lt;td&gt;"+rowName+"&lt;/td&gt;&lt;td&gt;"+rowWert+"&lt;/td&gt;&lt;td&gt;"+rowWeek+" %&lt;/td&gt;&lt;td class='text-success'&gt;&lt;div class='flex'&gt; &lt;a class='text-success' href="+rowURL+"&gt;&lt;span class='super'&gt;Jetzt kaufen!&lt;/span&gt;&lt;/a&gt;&lt;div class='buy'&gt;&lt;span class='inner'&gt;€&lt;/span&gt;  &lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;"]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
                                   </Sequence>
-                                </ActivityAction>
-                              </ui:ForEachRow.Body>
-                            </ui:ForEachRow>
-                          </Sequence>
-                        </ActivityAction>
-                      </uix:NApplicationCard.Body>
-                      <uix:NApplicationCard.TargetApp>
-                        <uix:TargetApp Area="-1288, -8, 1296, 1416" BrowserType="Chrome" IconBase64="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" InformativeScreenshot="ded56dde94e5ee49fffb0cada9790033.png" Selector="&lt;html app='chrome.exe' url='https://www.boerse.de/' /&gt;" Url="https://www.boerse.de/" />
-                      </uix:NApplicationCard.TargetApp>
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                    </uix:NApplicationCard>
-                  </Sequence>
-                </ActivityAction>
-              </ueab:ExcelForEachRowX.Body>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </ueab:ExcelForEachRowX>
-            <ueab:ExcelForEachRowX DisplayName="For Each Excel Row" EmptyRowBehavior="Stop" HasHeaders="True" sap:VirtualizedContainerService.HintSize="740,1677" sap2010:WorkflowViewState.IdRef="ExcelForEachRowX_2" Range="[Excel.Sheet(&quot;Aktien&quot;)]" SaveAfterEachRow="False">
-              <ueab:ExcelForEachRowX.Body>
-                <ActivityAction x:TypeArguments="ue:CurrentRowQuickHandle, x:Int32">
-                  <ActivityAction.Argument1>
-                    <DelegateInArgument x:TypeArguments="ue:CurrentRowQuickHandle" Name="CurrentRow" />
-                  </ActivityAction.Argument1>
-                  <ActivityAction.Argument2>
-                    <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentIndex" />
-                  </ActivityAction.Argument2>
-                  <Sequence sap:VirtualizedContainerService.HintSize="568,1497" sap2010:WorkflowViewState.IdRef="Sequence_35">
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                    <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="526,1405" sap2010:WorkflowViewState.IdRef="Sequence_28">
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                      <If Condition="[CurrentRow.ByField(&quot;ID&quot;)=&quot;&quot;]" sap:VirtualizedContainerService.HintSize="484,290" sap2010:WorkflowViewState.IdRef="If_7">
-                        <If.Then>
-                          <Sequence sap:VirtualizedContainerService.HintSize="242,114" sap2010:WorkflowViewState.IdRef="Sequence_31">
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                            <ui:Break sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Break_2" />
-                          </Sequence>
-                        </If.Then>
-                        <If.Else>
-                          <Sequence sap2010:WorkflowViewState.IdRef="Sequence_32">
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                          </Sequence>
-                        </If.Else>
-                      </If>
-                      <If Condition="[CurrentRow(&quot;Kaufempfehlung&quot;)=&quot;JA&quot;]" sap:VirtualizedContainerService.HintSize="484,653" sap2010:WorkflowViewState.IdRef="If_5">
-                        <If.Then>
-                          <Sequence sap:VirtualizedContainerService.HintSize="376,477" sap2010:WorkflowViewState.IdRef="Sequence_26">
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                            <ui:BuildDataTable DataTable="[stocksToRecommend]" DisplayName="Build Data Table" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Kaufempfehlung&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Verkaufsempfehlung&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Kurswert&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;changeWeek&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Name&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
-                            <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{CurrentRow(&quot;Kaufempfehlung&quot;),CurrentRow(&quot;Verkaufsempfehlung&quot;),CurrentRow(&quot;Current&quot;),CurrentRow(&quot;Week&quot;),CurrentRow(&quot;Name ISIN&quot;)}]" DataTable="[stocksToRecommend]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="334,185" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
-                            <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="334,61" sap2010:WorkflowViewState.IdRef="WriteLine_14" Text="test" />
-                          </Sequence>
-                        </If.Then>
-                        <If.Else>
-                          <Sequence sap2010:WorkflowViewState.IdRef="Sequence_27">
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                          </Sequence>
-                        </If.Else>
-                      </If>
-                      <If Condition="[CurrentRow.ByField(&quot;ID&quot;)=&quot;&quot;]" sap:VirtualizedContainerService.HintSize="484,290" sap2010:WorkflowViewState.IdRef="If_8">
-                        <If.Then>
-                          <Sequence sap:VirtualizedContainerService.HintSize="242,114" sap2010:WorkflowViewState.IdRef="Sequence_33">
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                            <ui:Break sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Break_3" />
-                          </Sequence>
-                        </If.Then>
-                        <If.Else>
-                          <Sequence sap2010:WorkflowViewState.IdRef="Sequence_34">
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                          </Sequence>
-                        </If.Else>
-                      </If>
+                                </If.Then>
+                                <If.Else>
+                                  <Sequence sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_42">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_8">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:String">[emailMessage]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:String">[emailMessage+"&lt;tr&gt;&lt;td&gt;"+rowName+"&lt;/td&gt;&lt;td&gt;"+rowWert+"&lt;/td&gt;&lt;td&gt;"+rowWeek+" %&lt;/td&gt;&lt;td class='text-success'&gt; &lt;a class='text-success' href="+rowURL+"&gt;&lt;span&gt;Jetzt kaufen&lt;/span&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;"]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                  </Sequence>
+                                </If.Else>
+                              </If>
+                            </Sequence>
+                          </If.Then>
+                          <If.Else>
+                            <Sequence sap:VirtualizedContainerService.HintSize="200,83" sap2010:WorkflowViewState.IdRef="Sequence_27">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </Sequence>
+                          </If.Else>
+                        </If>
+                        <If Condition="[rowVerkauf=&quot;JA&quot;]" sap:VirtualizedContainerService.HintSize="731,587" sap2010:WorkflowViewState.IdRef="If_9">
+                          <If.Then>
+                            <Sequence sap:VirtualizedContainerService.HintSize="695,401" sap2010:WorkflowViewState.IdRef="Sequence_38">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <If Condition="[rowSuperSell=&quot;JA&quot;]" sap:VirtualizedContainerService.HintSize="653,309" sap2010:WorkflowViewState.IdRef="If_11">
+                                <If.Then>
+                                  <Sequence sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_43">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_7">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:String">[emailMessage]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:String" xml:space="preserve">[emailMessage+"&lt;tr class='borderDanger'&gt;&lt;td&gt;"+rowName+"&lt;/td&gt;&lt;td&gt;"+rowWert+"&lt;/td&gt;&lt;td&gt;"+rowWeek+" %&lt;/td&gt;&lt;td class='text-danger'&gt;&lt;div class='flex'&gt; &lt;a class='text-danger' href="+rowURL+"&gt;&lt;span class='super'&gt;Jetzt verkaufen!&lt;/span&gt;&lt;/a&gt;&lt;/div&gt; &lt;div class='sell'&gt;&lt;span class='inner'&gt;€&lt;/span&gt;  &lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;"]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                  </Sequence>
+                                </If.Then>
+                                <If.Else>
+                                  <Sequence sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_44">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_9">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:String">[emailMessage]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:String">[emailMessage+"&lt;tr&gt;&lt;td&gt;"+rowName+"&lt;/td&gt;&lt;td&gt;"+rowWert+"&lt;/td&gt;&lt;td&gt;"+rowWeek+" %&lt;/td&gt;&lt;td class='text-danger'&gt; &lt;a class='text-danger' href="+rowURL+"&gt;&lt;span&gt;Jetzt verkaufen&lt;/span&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;"]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                  </Sequence>
+                                </If.Else>
+                              </If>
+                            </Sequence>
+                          </If.Then>
+                          <If.Else>
+                            <Sequence sap:VirtualizedContainerService.HintSize="200,83" sap2010:WorkflowViewState.IdRef="Sequence_39">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </Sequence>
+                          </If.Else>
+                        </If>
+                      </Sequence>
                     </Sequence>
-                  </Sequence>
-                </ActivityAction>
-              </ueab:ExcelForEachRowX.Body>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </ueab:ExcelForEachRowX>
+                  </ActivityAction>
+                </ueab:ExcelForEachRowX.Body>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ueab:ExcelForEachRowX>
+            </Sequence>
           </Sequence>
         </ActivityAction>
       </ueab:ExcelApplicationCard.Body>
@@ -519,44 +799,12 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ueab:ExcelApplicationCard>
-    <Assign sap:VirtualizedContainerService.HintSize="1033,64" sap2010:WorkflowViewState.IdRef="Assign_4">
+    <Assign sap:VirtualizedContainerService.HintSize="1033,60" sap2010:WorkflowViewState.IdRef="Assign_5">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[emailMessage]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String" xml:space="preserve">&lt;html&gt;
-&lt;head&gt;
-
-&lt;/head&gt;
-
-&lt;body&gt;
-
-&lt;h1&gt; Ihre Empfehlungen der Woche:&lt;/h1&gt;
-
-&lt;table&gt;
-
-&lt;tr&gt;
-&lt;th&gt;Name &amp; ISIN&lt;/th&gt;
-&lt;th&gt;Aktueller Wert&lt;/th&gt;
-&lt;th&gt;Kursänderung Woche In Prozent&lt;/th&gt;
-&lt;th&gt;Kaufsemfehlung&lt;/th&gt;
-&lt;th&gt;Verkaufsemfehlung&lt;/th&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;Name&lt;/td&gt;
-&lt;td&gt;Wert&lt;/td&gt;
-&lt;td&gt;Kurs&lt;/td&gt;
-&lt;td&gt;Empfehlung&lt;/td&gt;
-&lt;td&gt;Name&lt;/td&gt;
-
-&lt;/tr&gt;
-
-&lt;/table&gt;
-
-&lt;/body&gt;
-
-&lt;/html&gt;</InArgument>
+        <InArgument x:TypeArguments="x:String">[emailMessage+"&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;"]</InArgument>
       </Assign.Value>
     </Assign>
     <ui:GetPassword DisplayName="Get Password" sap:VirtualizedContainerService.HintSize="1033,22" sap2010:WorkflowViewState.IdRef="GetPassword_1" ProtectedPassword="AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAVLU0q5zHB0GTvXHb+3xXeQAAAAACAAAAAAAQZgAAAAEAACAAAACXviPwnmDm+ny8MmdMgUQLTTs7N3eVKS0E0Nh5PTBGJAAAAAAOgAAAAAIAACAAAAAiih0cqH4FHtSjCIs7c2h0t1mgcgmfe3Q806TvG/3ikxAAAAAB8Iscgp8pvF4X4GwZShHrQAAAALsvmNOM51USCrBJr4yw8UEynf5Rnxr7CpQOaejcKExwPkgFT4gmmj6n+orKuDQvCOsGyDq27HsQ8tpaY90VoCU=" Result="[password]" />
