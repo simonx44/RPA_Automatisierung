@@ -1,7 +1,7 @@
 {
   "name": "RPA_GRUPPE4",
   "description": "Leerer Prozess",
-  "main": "Main.xaml",
+  "main": "Main1.xaml",
   "dependencies": {
     "UiPath.Excel.Activities": "[2.11.4]",
     "UiPath.Mail.Activities": "[1.12.2]",
@@ -15,6 +15,7 @@
   "projectVersion": "1.0.0",
   "runtimeOptions": {
     "autoDispose": false,
+    "netFrameworkLazyLoading": false,
     "isPausable": true,
     "isAttended": false,
     "requiresUserInteraction": true,
@@ -44,8 +45,8 @@
   "expressionLanguage": "VisualBasic",
   "entryPoints": [
     {
-      "filePath": "Main.xaml",
-      "uniqueId": "74d22273-8202-4733-aaa2-5fb1894616d3",
+      "filePath": "Main1.xaml",
+      "uniqueId": "84ed15d2-c9ac-4c8d-9e72-ff59e7252773",
       "input": [],
       "output": []
     }
